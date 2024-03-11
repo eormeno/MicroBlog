@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                    <form method="post" action="{{ route('mensajes.store') }}">
+                    <form method="post" action="{{ route('mensajes.store') }}" enctype="multipart/form-data" novalidate>
                         @csrf
                         <!-- mensaje -->
                         <div>
@@ -22,8 +22,8 @@
                         <!-- imagen -->
                         <div class="mt-4">
                             <x-input-label for="imagen" :value="__('Imagen')" />
-                            <x-file-input id="imagen" class="block mt-1 w-full" name="imagen"
-                                :value="old('imagen')" required />
+                            <x-file-input id="imagen" class="block mt-1 w-full" name="imagen" :value="old('imagen')"
+                                required accept="image/png" />
                             <x-input-error :messages="$errors->get('imagen')" class="mt-2" />
                         </div>
 

@@ -42,7 +42,7 @@ class MensajeController extends Controller
     {
         $request->validate([
             'mensaje' => 'required',
-            'imagen' => 'required|image|mimes:jpeg,png,jpg,gif | max:2048',
+            'imagen' => 'required|image|mimes:png,jpg,jpeg|max:2048'
         ]);
 
         $imgPath = $request->file('imagen')->getRealPath();
