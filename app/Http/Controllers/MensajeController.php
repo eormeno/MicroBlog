@@ -32,7 +32,7 @@ class MensajeController extends Controller
      */
     public function create()
     {
-        //
+        return view('mensajes.create');
     }
 
     /**
@@ -40,7 +40,21 @@ class MensajeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'mensaje' => 'required',
+            'imagen' => 'required|image|mimes:jpeg,png,jpg,gif | max:2048',
+        ]);
+
+        $imgPath = $request->file('imagen')->getRealPath();
+        $encodedImage = base64_encode(file_get_contents($imgPath));
+
+        Mensaje::create([
+            'mensaje' => $request->mensaje,
+            'imagen' => $encodedImage,
+            'user_id' => auth()->id(),
+        ]);
+
+        return redirect()->route('mensajes.index');
     }
 
     /**

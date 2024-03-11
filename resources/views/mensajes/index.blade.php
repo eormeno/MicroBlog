@@ -22,14 +22,13 @@
                                     <div class="group relative">
                                         <a href="{{ route('mensajes.edit', $mensaje) }}">
                                             <div
-                                                class="bg-gray-500 text-white p-2 rounded-lg
+                                                class="bg-gray-500 text-white p-2 rounded-lg h-24 overflow-clip
                                                hover:bg-gray-700 transition duration-300">
-                                                {{ $mensaje->mensaje }}</div>
+                                                {!! Str::limit($mensaje->mensaje, 75, '...') !!}</div>
                                         </a>
                                         <!-- The message's image -->
                                         <img src="{{ route('mensajes.imagen', $mensaje) }}" alt="{{ $mensaje->nombre }}"
-                                            class="w-full h-48 object-cover rounded-lg mt-2">
-
+                                            class="w-full object-contain rounded-lg mt-2">
                                         <button
                                             class="hidden group-hover:block cursor-pointer
                                        absolute top-0 right-0 p-2 text-red-400 hover:text-red-500"
@@ -43,10 +42,6 @@
                                             </svg>
                                         </button>
                                     </div>
-                                    <p
-                                        class="text-gray-700 bg-gray-300 hover:bg-gray-400 cursor-pointer rounded-md text-center p-1 my-2">
-                                        {{ $mensaje->descripcion }}
-                                    </p>
                                 </div>
                                 <x-modal name="confirm-mensaje-deletion-{{ $mensaje->id }}" :show="$errors->userDeletion->isNotEmpty()"
                                     focusable>

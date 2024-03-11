@@ -19,7 +19,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('mensajes', MensajeController::class)
-    ->only(['index', 'show', 'create', 'store', 'edit', 'update', 'destroy'])
     ->middleware('auth');
 
 Route::get('mensajes/{mensaje}/imagen', [MensajeController::class, 'imagen'])
